@@ -8,5 +8,6 @@ namespace DataAccess.Repository
 {
     internal class IMemberRepository
     {
+
     }
 }
