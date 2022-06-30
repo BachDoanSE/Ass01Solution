@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessObject;
+using DataAccess;
 
 namespace DataAccess.Repository
 {
-    internal class MemberRepository
+    public class MemRepository : IMemberRepository
     {
+        public MemberObject GetMemByID(int memID) => MemberDAO.Instance.GetMemByID(memID);
+        public IEnumerable<MemberObject> GetMembers() => MemberDAO.Instance.GetMemList;
+        public void InsertMem(MemberObject mem) => MemberDAO.Instance.AddNew(mem);
+        public void DeleteMem(int memID) => MemberDAO.Instance.Remove(memID);
+        public void UpdateMem(MemberObject mem) => MemberDAO.Instance.Update(mem);
     }
 }
