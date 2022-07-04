@@ -172,6 +172,7 @@
             // 
             // frmMemberManagement
             // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(865, 423);
             this.Name = "frmMemberManagement";
             this.Text = "MemberManagement";

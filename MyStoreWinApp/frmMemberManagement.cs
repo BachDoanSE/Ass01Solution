@@ -58,7 +58,7 @@ namespace MyStoreWinApp
 
         private void ClearText()
         {
-            // CODE HERE
+            
             txtMemberId.Text = string.Empty;
             txtMemberName.Text = string.Empty;
             txtCountry.Text = string.Empty;
@@ -102,7 +102,10 @@ namespace MyStoreWinApp
             }
 
         }
-
+        public frmMemberManagement()
+        { 
+            InitializeComponent();
+        }
         public frmMemberManagement(MemberObject loginMember)
         {
             this.loginMember = loginMember;
