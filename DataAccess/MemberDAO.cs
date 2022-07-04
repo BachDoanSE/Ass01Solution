@@ -1,7 +1,9 @@
 ﻿using System.Data;
 using BusinessObject;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
+using DataAccess.Repository;
 namespace DataAccess
 {
     public class MemberDAO : BaseDAL
@@ -22,6 +24,61 @@ namespace DataAccess
                     return instance;
                 }
             }
+        }
+        //--------------------------------------------------------
+        MemberRepository memberRepository = new MemberRepository();
+
+        private bool checkAdminLogin(string email, string password)
+        {
+            bool checkAdminLogin = false;
+
+            IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("AppSettings.json", true, true)
+                .Build();
+
+            String adminEmail = config["DefaultAccounts:Email"];
+            String adminPassword = config["DefaultAccounts:Password"];
+            checkAdminLogin = (email == adminEmail) && (password == adminPassword);
+
+            return checkAdminLogin;
+        }
+        public MemberObject Login(string email, string password)
+        {
+            // CODE HERE
+            MemberObject loginMember = null;
+            if (checkAdminLogin(email, password) == false)
+            {
+                try
+                {
+                    IEnumerable<MemberObject> list = memberRepository.GetMemList();
+                    loginMember = (from member in list
+                                   where (member.Email == email)
+                                   && (member.Password == password)
+                                   select member).First();
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message.Contains("no elements"))
+                    {
+                        throw new Exception("Incorrect Username or Password!");
+                    }
+                }
+
+            }
+            else
+            {
+                loginMember = new MemberObject
+                {
+                    MemberID = 0,
+                    MemberName = "Admin",
+                    Email = email,
+                    Password = password,
+                    City = string.Empty,
+                    Country = string.Empty,
+                };
+            }
+            return loginMember;
         }
         //--------------------------------------------------------
         public IEnumerable<MemberObject> GetMemList()

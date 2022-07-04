@@ -3,7 +3,7 @@ using DataAccess;
 
 namespace DataAccess.Repository
 {
-    public class MemRepository : IMemberRepository
+    public class MemberRepository : IMemberRepository
     {
         public MemberObject GetMemByID(int memID) => MemberDAO.Instance.GetMemByID(memID);
         public IEnumerable<MemberObject> GetMembers() => MemberDAO.Instance.GetMemList();
