@@ -8,14 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using DataAccess.Repository;
-using DataAccess;
 using BusinessObject;
 namespace MyStoreWinApp
 {
     public partial class frmLogin : Form
     {
-        MemberDAO member = new MemberDAO();
+        IMemberServices memberServices = new MemberServices();
         public frmLogin()
         {
             InitializeComponent();
@@ -29,7 +27,7 @@ namespace MyStoreWinApp
 
             try
             {
-                MemberObject loginMember = member.Login(email, password);
+                MemberObject loginMember = memberServices.Login(email, password);
                 if (loginMember != null)
                 {
                     this.Hide();

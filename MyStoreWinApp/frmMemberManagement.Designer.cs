@@ -106,109 +106,75 @@
             this.dgvMemberList.RowTemplate.Height = 29;
             this.dgvMemberList.Size = new System.Drawing.Size(797, 264);
             this.dgvMemberList.TabIndex = 12;
-            this.dgvMemberList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMemberList_CellContentClick);
             // 
             // btnSearch
             // 
-            this.btnSearch.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSearch.Location = new System.Drawing.Point(601, 114);
+            this.btnSearch.Location = new System.Drawing.Point(0, 0);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(108, 47);
-            this.btnSearch.TabIndex = 11;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 16;
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDelete.Location = new System.Drawing.Point(344, 114);
+            this.btnDelete.Location = new System.Drawing.Point(0, 0);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(108, 47);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 17;
             // 
             // btnInsert
             // 
-            this.btnInsert.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInsert.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnInsert.Location = new System.Drawing.Point(88, 114);
+            this.btnInsert.Location = new System.Drawing.Point(0, 0);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(108, 47);
-            this.btnInsert.TabIndex = 8;
-            this.btnInsert.Text = "Insert";
-            this.btnInsert.UseVisualStyleBackColor = false;
+            this.btnInsert.Size = new System.Drawing.Size(75, 23);
+            this.btnInsert.TabIndex = 18;
             // 
             // lblCity
             // 
-            this.lblCity.AutoSize = true;
-            this.lblCity.BackColor = System.Drawing.SystemColors.Control;
-            this.lblCity.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCity.Location = new System.Drawing.Point(438, 75);
+            this.lblCity.Location = new System.Drawing.Point(0, 0);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(34, 20);
-            this.lblCity.TabIndex = 7;
-            this.lblCity.Text = "City";
+            this.lblCity.Size = new System.Drawing.Size(100, 23);
+            this.lblCity.TabIndex = 19;
             // 
             // lblCountry
             // 
-            this.lblCountry.AutoSize = true;
-            this.lblCountry.BackColor = System.Drawing.SystemColors.Control;
-            this.lblCountry.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCountry.Location = new System.Drawing.Point(438, 29);
+            this.lblCountry.Location = new System.Drawing.Point(0, 0);
             this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(60, 20);
-            this.lblCountry.TabIndex = 5;
-            this.lblCountry.Text = "Country";
+            this.lblCountry.Size = new System.Drawing.Size(100, 23);
+            this.lblCountry.TabIndex = 20;
             // 
             // txtMemberName
             // 
-            this.txtMemberName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMemberName.Location = new System.Drawing.Point(153, 65);
+            this.txtMemberName.Location = new System.Drawing.Point(0, 0);
             this.txtMemberName.Name = "txtMemberName";
-            this.txtMemberName.Size = new System.Drawing.Size(228, 34);
-            this.txtMemberName.TabIndex = 3;
+            this.txtMemberName.Size = new System.Drawing.Size(100, 27);
+            this.txtMemberName.TabIndex = 21;
             // 
             // txtMemberId
             // 
-            this.txtMemberId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMemberId.Location = new System.Drawing.Point(153, 20);
+            this.txtMemberId.Location = new System.Drawing.Point(0, 0);
             this.txtMemberId.Name = "txtMemberId";
-            this.txtMemberId.Size = new System.Drawing.Size(228, 34);
-            this.txtMemberId.TabIndex = 2;
+            this.txtMemberId.Size = new System.Drawing.Size(100, 27);
+            this.txtMemberId.TabIndex = 22;
             // 
             // lblMemberName
             // 
-            this.lblMemberName.AutoSize = true;
-            this.lblMemberName.BackColor = System.Drawing.SystemColors.Control;
-            this.lblMemberName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblMemberName.Location = new System.Drawing.Point(26, 75);
+            this.lblMemberName.Location = new System.Drawing.Point(0, 0);
             this.lblMemberName.Name = "lblMemberName";
-            this.lblMemberName.Size = new System.Drawing.Size(109, 20);
-            this.lblMemberName.TabIndex = 1;
-            this.lblMemberName.Text = "Member Name";
+            this.lblMemberName.Size = new System.Drawing.Size(100, 23);
+            this.lblMemberName.TabIndex = 23;
             // 
             // lblMemberId
             // 
-            this.lblMemberId.AutoSize = true;
-            this.lblMemberId.BackColor = System.Drawing.SystemColors.Control;
-            this.lblMemberId.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblMemberId.Location = new System.Drawing.Point(28, 31);
+            this.lblMemberId.Location = new System.Drawing.Point(0, 0);
             this.lblMemberId.Name = "lblMemberId";
-            this.lblMemberId.Size = new System.Drawing.Size(84, 20);
-            this.lblMemberId.TabIndex = 0;
-            this.lblMemberId.Text = "Member ID";
+            this.lblMemberId.Size = new System.Drawing.Size(100, 23);
+            this.lblMemberId.TabIndex = 24;
             // 
             // frmMemberManagement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 528);
-            this.Controls.Add(this.grpManagement);
+            this.ClientSize = new System.Drawing.Size(865, 423);
             this.Name = "frmMemberManagement";
-            this.Text = "Form2";
+            this.Text = "MemberManagement";
             this.Load += new System.EventHandler(this.frmMemberManagement_Load);
             this.grpManagement.ResumeLayout(false);
             this.grpManagement.PerformLayout();

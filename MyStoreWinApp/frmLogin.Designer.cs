@@ -100,7 +100,7 @@
             this.ClientSize = new System.Drawing.Size(340, 216);
             this.Controls.Add(this.grpLogin);
             this.Name = "frmLogin";
-            this.Text = "Form1";
+            this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.grpLogin.ResumeLayout(false);
             this.grpLogin.PerformLayout();

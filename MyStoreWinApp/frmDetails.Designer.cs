@@ -196,7 +196,7 @@
             this.ClientSize = new System.Drawing.Size(637, 239);
             this.Controls.Add(this.grpDetails);
             this.Name = "frmDetails";
-            this.Text = "frmDetails";
+            this.Text = "Details";
             this.Load += new System.EventHandler(this.frmDetails_Load);
             this.grpDetails.ResumeLayout(false);
             this.grpDetails.PerformLayout();

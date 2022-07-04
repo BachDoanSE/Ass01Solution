@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.Configuration;
-using DataAccess;
+
 using BusinessObject;
 namespace MyStoreWinApp
 {
     public partial class frmMemberManagement : Form
     {
         private MemberObject loginMember;
-        private MemberDAO member = new MemberDAO();
+        private MemberServices memberServices = new MemberServices();
         private bool IsAdmin = false;
         private BindingSource source;
         private void CheckAuthentication()
@@ -66,13 +66,17 @@ namespace MyStoreWinApp
         }
         public void LoadMemberList(IEnumerable<MemberObject> list)
         {
-            // CODE HERE
+            
             try
             {
                 source = new BindingSource();
                 if (IsAdmin == false)
                 {
-                    source.DataSource = null;
+                    if (IsAdmin == false)
+                    {
+                        source.DataSource =
+                            new[] { memberServices.SearchMemberById(loginMember.MemberID) };
+                    }
                 }
                 else
                 {
@@ -105,11 +109,49 @@ namespace MyStoreWinApp
             InitializeComponent();
         }
 
- 
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtMemberId.Text))
+            {
+                try
+                {
+                    MemberObject searchMember = memberServices.SearchMemberById(
+                        int.Parse(txtMemberId.Text));
+                    LoadMemberList(new[] { searchMember });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Search by ID");
+                }
+            }
+            else
+            {
+                try
+                {   //Search group 3 values
+                    var searchNames = memberServices.SearchMemberByName(txtMemberName.Text);
+                    var searchCity = memberServices.FilterMemberByCity(txtCity.Text);
+                    var searchCountry = memberServices.FilterMemberByCountry(txtCity.Text);
+                    var resultSet = from names in searchNames
+                                    join cities in searchCity
+                                        on names.MemberID equals cities.MemberID
+                                    join countries in searchCountry
+                                        on names.MemberID equals countries.MemberID
+                                    select new MemberObject
+                                    {
+                                        MemberID = names.MemberID,
+                                        MemberName = names.MemberName,
+                                        City = names.City,
+                                        Country = names.Country,
+                                        Email = names.Email,
+                                        Password = names.Password,
+                                    };
+                    LoadMemberList(resultSet);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Search error");
+                }
+            }
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -130,12 +172,22 @@ namespace MyStoreWinApp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                MemberObject member = GetMemberObject();
+                memberServices.DeleteMember(member.MemberID);
+                var memberList = memberServices.GetMemberList();
+                LoadMemberList(memberList);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Delete member");
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void frmMemberManagement_Load(object sender, EventArgs e)
@@ -144,7 +196,7 @@ namespace MyStoreWinApp
 
             btnDelete.Enabled = false;
 
-            var memberList = member.GetMemList();
+            var memberList = memberServices.GetMemberList();
             LoadMemberList(memberList);
             dgvMemberList.CellDoubleClick += DgvMemberList_CellDoubleClick;
         }
@@ -164,13 +216,6 @@ namespace MyStoreWinApp
                 source.Position = source.Count - 1;
             }
         }
-        private void dgvMemberList_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-    
-    
-    
-    
     }
 }
