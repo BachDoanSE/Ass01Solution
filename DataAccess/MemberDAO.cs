@@ -6,16 +6,16 @@ namespace DataAccess
 {
     public class MemberDAO : BaseDAL
     {
-        //--------------------------------------------------------
         private static MemberDAO instance = null;
         private static readonly object instanceLock = new object();
+        private MemberDAO() { }
         public static MemberDAO Instance
         {
             get
             {
                 lock (instanceLock)
                 {
-                    if(instance == null)
+                    if (instance == null)
                     {
                         instance = new MemberDAO();
                     }
@@ -23,7 +23,6 @@ namespace DataAccess
                 }
             }
         }
-        //--------------------------------------------------------
         public IEnumerable<MemberObject> GetMemList()
         {
             IDataReader dataReader = null;
@@ -45,7 +44,7 @@ namespace DataAccess
                     });
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -56,7 +55,6 @@ namespace DataAccess
             }
             return Mems;
         }
-        //--------------------------------------------------------
         public MemberObject GetMemByID(int memID)
         {
             MemberObject mem = null;
@@ -79,7 +77,7 @@ namespace DataAccess
                     };
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -90,13 +88,12 @@ namespace DataAccess
             }
             return mem;
         }
-        //--------------------------------------------------------
         public void AddNew(MemberObject mem)
         {
             try
             {
                 MemberObject pro = GetMemByID(mem.MemberID);
-                if(pro == null)
+                if (pro == null)
                 {
                     string SQLInsert = "Insert tblMember values(@MemberID, @MemberName, @Email, @Password, @City, @Country)";
                     var parameters = new List<SqlParameter>();
@@ -106,37 +103,7 @@ namespace DataAccess
                     parameters.Add(dataProvider.CreateParameter("@Password", 50, mem.Password, DbType.String));
                     parameters.Add(dataProvider.CreateParameter("@City", 50, mem.City, DbType.String));
                     parameters.Add(dataProvider.CreateParameter("@Country", 50, mem.Country, DbType.String));
-                }
-                else
-                {
-                    throw new Exception("Member is already exist.");
-                }
-            }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-        //--------------------------------------------------------
-        public void Update(MemberObject mem)
-        {
-            try
-            {
-                MemberObject pro = GetMemByID(mem.MemberID);
-                if (pro == null)
-                {
-                    string SQLUpdate = "Update tblMember set MemberName = @MemberName, Email = @Email, Password = @Password, City = @City, Country = @Country";
-                    var parameters = new List<SqlParameter>();
-                    parameters.Add(dataProvider.CreateParameter("@MemberID", 4, mem.MemberID, DbType.Int32));
-                    parameters.Add(dataProvider.CreateParameter("@MemberName", 50, mem.MemberName, DbType.String));
-                    parameters.Add(dataProvider.CreateParameter("@EMail", 50, mem.Email, DbType.String));
-                    parameters.Add(dataProvider.CreateParameter("@Password", 50, mem.Password, DbType.String));
-                    parameters.Add(dataProvider.CreateParameter("@City", 50, mem.City, DbType.String));
-                    parameters.Add(dataProvider.CreateParameter("@Country", 50, mem.Country, DbType.String));
+                    dataProvider.Insert(SQLInsert, CommandType.Text, parameters.ToArray());
                 }
                 else
                 {
@@ -152,13 +119,43 @@ namespace DataAccess
                 CloseConnection();
             }
         }
-        //--------------------------------------------------------
+        public void Update(MemberObject mem)
+        {
+            try
+            {
+                MemberObject pro = GetMemByID(mem.MemberID);
+                if (pro == null)
+                {
+                    string SQLUpdate = "Update tblMember set MemberName = @MemberName, Email = @Email, Password = @Password, City = @City, Country = @Country";
+                    var parameters = new List<SqlParameter>();
+                    parameters.Add(dataProvider.CreateParameter("@MemberID", 4, mem.MemberID, DbType.Int32));
+                    parameters.Add(dataProvider.CreateParameter("@MemberName", 50, mem.MemberName, DbType.String));
+                    parameters.Add(dataProvider.CreateParameter("@EMail", 50, mem.Email, DbType.String));
+                    parameters.Add(dataProvider.CreateParameter("@Password", 50, mem.Password, DbType.String));
+                    parameters.Add(dataProvider.CreateParameter("@City", 50, mem.City, DbType.String));
+                    parameters.Add(dataProvider.CreateParameter("@Country", 50, mem.Country, DbType.String));
+                    dataProvider.Update(SQLUpdate, CommandType.Text, parameters.ToArray());
+                }
+                else
+                {
+                    throw new Exception("Member is already exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
         public void Remove(int memID)
         {
             try
             {
                 MemberObject mem = GetMemByID(memID);
-                if(mem != null)
+                if (mem != null)
                 {
                     string SQLDelete = "Delete Cars where MemberID = @MemberID";
                     var param = dataProvider.CreateParameter("@MemberID", 4, memID, DbType.Int32);
@@ -169,7 +166,7 @@ namespace DataAccess
                     throw new Exception("Member does not already exist.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -178,5 +175,5 @@ namespace DataAccess
                 CloseConnection();
             }
         }
-    }//end class
-}//end namespace
+    }
+}

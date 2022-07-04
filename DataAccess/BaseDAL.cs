@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-using System.IO;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace DataAccess
@@ -9,13 +7,11 @@ namespace DataAccess
     {
         public StockDataProvider dataProvider { get; set; } = null;
         public SqlConnection connection = null;
-        //--------------------------------------------------------
         public BaseDAL()
         {
             var connectionString = GetConnectionString();
             dataProvider = new StockDataProvider(connectionString);
         }
-        //--------------------------------------------------------
         public string GetConnectionString()
         {
             string connectionString;
@@ -23,10 +19,9 @@ namespace DataAccess
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appssettings.json", true, true)
                 .Build();
-            connectionString = config["ConnectionString:FStore"];
+            connectionString = config["ConnectionString:FStoreDB"];
             return connectionString;
         }
-        //--------------------------------------------------------
         public void CloseConnection() => dataProvider.CloseConnection(connection);
-    }//end class
-}//end namespace
+    }
+}

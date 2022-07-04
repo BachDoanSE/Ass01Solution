@@ -7,13 +7,9 @@ namespace DataAccess
     public class StockDataProvider
     {
         public StockDataProvider() { }
-        //--------------------------------------------------------
         private string ConnectionString { get; set; }
-        //--------------------------------------------------------
         public StockDataProvider(string connectionString) => ConnectionString = connectionString;
-        //--------------------------------------------------------
-        public void CloseConnection(SqlConnection connection) => connection.Close();
-        //--------------------------------------------------------
+        public void CloseConnection(SqlConnection connection) => connection.Close(); 
         public SqlParameter CreateParameter(string name, int size, object value, DbType dbType,
             ParameterDirection direction = ParameterDirection.Input)
         {
@@ -26,7 +22,6 @@ namespace DataAccess
                 Value = value,
             };
         }
-        //--------------------------------------------------------
         public IDataReader GetDataReader(string commandText, CommandType commandType,
             out SqlConnection connection, params SqlParameter[] parameters)
         {
@@ -52,7 +47,6 @@ namespace DataAccess
             }
             return reader;
         }
-        //--------------------------------------------------------
         public void Delete(string commandText, CommandType commandType,
             params SqlParameter[] parameters)
         {
@@ -76,7 +70,6 @@ namespace DataAccess
                 throw new Exception("Data Provider: Delete Method", ex.InnerException);
             }
         }
-        //--------------------------------------------------------
         public void Insert(string commandText, CommandType commandType,
             params SqlParameter[] parameters)
         {
@@ -100,7 +93,6 @@ namespace DataAccess
                 throw new Exception(ex.Message);
             }
         }
-        //--------------------------------------------------------
         public void Update(string commandText, CommandType commandType,
             params SqlParameter[] parameters)
         {
@@ -124,5 +116,5 @@ namespace DataAccess
                 throw new Exception(ex.Message);
             }
         }
-    }//end class
-}//end namespace
+    }
+}
