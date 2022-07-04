@@ -114,7 +114,18 @@ namespace MyStoreWinApp
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-
+            frmDetails details = new frmDetails
+            {
+                Text = "Add member",
+                IsUpdate = false,
+                memberServices = memberServices,
+            };
+            if (details.ShowDialog() == DialogResult.OK)
+            {
+                var memberList = memberServices.GetMemberList();
+                LoadMemberList(memberList);
+                source.Position = source.Count - 1;
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -133,7 +144,7 @@ namespace MyStoreWinApp
 
             btnDelete.Enabled = false;
 
-            var memberList = member.GetMemberList();
+            var memberList = member.GetMemList();
             LoadMemberList(memberList);
             dgvMemberList.CellDoubleClick += DgvMemberList_CellDoubleClick;
         }
@@ -153,10 +164,13 @@ namespace MyStoreWinApp
                 source.Position = source.Count - 1;
             }
         }
-
         private void dgvMemberList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+    
+    
+    
+    
     }
 }

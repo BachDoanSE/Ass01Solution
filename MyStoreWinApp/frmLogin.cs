@@ -33,7 +33,7 @@ namespace MyStoreWinApp
                 if (loginMember != null)
                 {
                     this.Hide();
-                    frmManagement frmManagement = new frmManagement(loginMember);
+                    frmMemberManagement frmManagement = new frmMemberManagement(loginMember);
                     frmManagement.ShowDialog();
                     this.Show();
                 }

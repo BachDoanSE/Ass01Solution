@@ -8,10 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using BusinessObject;
 namespace MyStoreWinApp
 {
     public partial class frmDetails : Form
     {
+        
+
+        public bool IsUpdate { get; set; }
+        public MemberObject memberInfo { get; set; }
         public frmDetails()
         {
             InitializeComponent();
