@@ -56,8 +56,9 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(94, 29);
             this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Log In";
+            this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtPassword
             // 
@@ -101,7 +102,6 @@
             this.Controls.Add(this.grpLogin);
             this.Name = "frmLogin";
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.grpLogin.ResumeLayout(false);
             this.grpLogin.PerformLayout();
             this.ResumeLayout(false);

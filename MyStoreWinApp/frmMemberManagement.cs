@@ -58,8 +58,8 @@ namespace MyStoreWinApp
 
         private void ClearText()
         {
-            
-            txtMemberId.Text = string.Empty;
+
+            txtMemberID.Text = string.Empty;
             txtMemberName.Text = string.Empty;
             txtCountry.Text = string.Empty;
             txtCity.Text = string.Empty;
@@ -114,12 +114,12 @@ namespace MyStoreWinApp
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtMemberId.Text))
+            if (!string.IsNullOrEmpty(txtMemberID.Text))
             {
                 try
                 {
                     MemberObject searchMember = memberServices.SearchMemberById(
-                        int.Parse(txtMemberId.Text));
+                        int.Parse(txtMemberID.Text));
                     LoadMemberList(new[] { searchMember });
                 }
                 catch (Exception ex)
@@ -219,6 +219,7 @@ namespace MyStoreWinApp
                 source.Position = source.Count - 1;
             }
         }
+
 
     }
 }
